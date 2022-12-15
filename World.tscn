@@ -1,10 +1,84 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level Objects/Sand/Yellow/YellowSandBlock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn0.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Level Objects/Tech/Gray/Column/GrayColumn6.tscn" type="PackedScene" id=10]
+
+[sub_resource type="GDScript" id=1]
+script/source = "
+
+"
 
 [node name="World" type="Node2D"]
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -48 )
+
+[node name="YellowSandBlock" parent="." instance=ExtResource( 3 )]
+position = Vector2( -40, -8 )
+
+[node name="YellowSandBlock2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -24, -8 )
+
+[node name="YellowSandBlock3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8, -8 )
+
+[node name="YellowSandBlock4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -8, -8 )
+
+[node name="YellowSandBlock5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 24, -8 )
+
+[node name="GrayColumn0" parent="." instance=ExtResource( 5 )]
+position = Vector2( -16, -136 )
+rotation = 0.523598
+
+[node name="GrayColumn2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 129, -10 )
+rotation = 0.785397
+
+[node name="GrayColumn3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 47, 31 )
+
+[node name="GrayColumn1" parent="." instance=ExtResource( 7 )]
+position = Vector2( -124, -36 )
+rotation = 0.523598
+
+[node name="GrayColumn4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 99, -26 )
+rotation = -0.785397
+
+[node name="GrayColumn5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, -9.00002 )
+rotation = 0.785397
+
+[node name="GrayColumn6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 306, 16 )
+rotation = 0.785397
+
+[node name="GrayColumn7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 222, 77 )
+rotation = 0.785397
+
+[node name="GrayColumn9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 163, -14 )
+
+[node name="GrayColumn8" parent="." instance=ExtResource( 9 )]
+position = Vector2( 354, 31 )
+rotation = -0.523598
+
+[node name="GrayColumn6" parent="GrayColumn8" instance=ExtResource( 10 )]
+position = Vector2( 68, 18 )
+
+[node name="GrayColumn7" parent="GrayColumn8" instance=ExtResource( 10 )]
+position = Vector2( 129, 18 )
+
+[node name="GrayColumn10" parent="." instance=ExtResource( 6 )]
+position = Vector2( 52, -24 )

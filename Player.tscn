@@ -1,10 +1,10 @@
 [gd_scene load_steps=246 format=2]
 
-[ext_resource path="res://Sprite Sheets/char-sheet-alpha.png" type="Texture" id=1]
+[ext_resource path="res://Sprites and Sprite Sheets/Sprite Sheets/char-sheet-alpha.png" type="Texture" id=1]
 [ext_resource path="res://PlayerBody.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=243]
-extents = Vector2( 9, 16 )
+extents = Vector2( 5, 16.5 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -1461,14 +1461,12 @@ animations = [ {
 [node name="Player" type="Node2D"]
 
 [node name="PlayerBody" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -24 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2( 0, 7 )
+position = Vector2( 0, 7.5 )
 shape = SubResource( 243 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerBody"]
 pause_mode = 2
@@ -1479,5 +1477,6 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody"]
+position = Vector2( 0, -8 )
 current = true
 smoothing_enabled = true
