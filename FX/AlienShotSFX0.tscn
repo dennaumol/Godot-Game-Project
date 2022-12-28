@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Sounds/Blaster Shot Sounds/HeavyGun_Experimental_3.wav" type="AudioStream" id=1]
+
+[node name="AlienShotSFX0" type="AudioStreamPlayer2D"]
+stream = ExtResource( 1 )
+volume_db = -16.0
+autoplay = true

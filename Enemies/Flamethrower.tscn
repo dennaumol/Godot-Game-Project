@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/Sprite Sheets/enemies2-sheet-alpha.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Flamethrower.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 58, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 54, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 108, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 162, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 216, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 270, 0, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 54, 58, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 108, 58, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 162, 58, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 216, 58, 54, 58 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 270, 58, 54, 58 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle_attacking",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "walk_attacking",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 16.6563, 26.0625 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 231, 27.875 )
+
+[node name="Flamethrower" type="KinematicBody2D"]
+z_index = -1
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 12 )
+animation = "walk_attacking"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3, 0 )
+shape = SubResource( 13 )
+
+[node name="VisionArea" type="Area2D" parent="."]
+visible = false
+position = Vector2( -1, 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+visible = false
+position = Vector2( -1, -10.875 )
+shape = SubResource( 14 )
+
+[node name="RayCast2DLeftFloor" type="RayCast2D" parent="."]
+position = Vector2( -26, 0 )
+enabled = true
+cast_to = Vector2( 0, 30 )
+collision_mask = 9
+
+[node name="RayCast2DRightFloor" type="RayCast2D" parent="."]
+position = Vector2( 25, 0 )
+enabled = true
+cast_to = Vector2( 0, 30 )
+collision_mask = 9
+
+[node name="RayCast2DLeftWalls" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( -232, 0 )
+
+[node name="RayCast2DRightWalls" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 230, 0 )
