@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Sprites/pixel_circle_1.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.532154, 1 ), -0.396811, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.168614, 0.48581, 0.682805, 0.856427 )
+colors = PoolColorArray( 1, 1, 1, 0.345098, 1, 0.92549, 0.25098, 1, 1, 0.643375, 0.330244, 1, 1, 0.282353, 0.282353, 1, 0.705882, 0, 0.333333, 0.282353 )
+
+[node name="CircleBlastVFX" type="CPUParticles2D"]
+modulate = Color( 1.8, 1.8, 1.8, 1 )
+z_index = -1
+amount = 1
+lifetime = 0.3
+texture = ExtResource( 1 )
+gravity = Vector2( 0, 0 )
+scale_amount = 4.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )

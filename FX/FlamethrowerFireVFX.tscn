@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Sprites/pixel_circle.png" type="Texture" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.482955 ), 0.0, 0.523637, 0, 0, Vector2( 0.397727, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.379747, 0.813743, 1 )
+colors = PoolColorArray( 1, 0.650391, 0, 1, 1, 0.226465, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0.54902 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends CPUParticles2D
+
+var current_lifetime
+
+func _ready():
+	current_lifetime = lifetime
+
+func _physics_process(delta):
+	if current_lifetime <= 0:
+		queue_free()
+	current_lifetime -= delta
+"
+
+[node name="FlamethrowerFireVFX" type="CPUParticles2D"]
+modulate = Color( 1.4, 1.4, 1.4, 1 )
+z_index = -1
+z_as_relative = false
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 3.5
+gravity = Vector2( 0, -25 )
+scale_amount = 3.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+script = SubResource( 3 )

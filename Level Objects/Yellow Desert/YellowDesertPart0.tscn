@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://MassiveTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://TechRocksSand.tres" type="TileSet" id=1]
 [ext_resource path="res://Level Objects/Yellow Desert/YellowDesertPart0.gd" type="Script" id=2]
 
 [node name="YellowDesertPart0" type="StaticBody2D"]
@@ -42,7 +42,7 @@ position = Vector2( 229, -216 )
 scale = Vector2( -1.11407e+12, 4.51761e+07 )
 
 [node name="Tilemap1" type="TileMap" parent="."]
-z_index = -2
+z_index = -15
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 collision_use_parent = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://MassiveTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://TechRocksSand.tres" type="TileSet" id=1]
 [ext_resource path="res://Level Objects/Yellow Desert/YellowDesertPart2.gd" type="Script" id=2]
 
 [node name="YellowDesertPart2" type="StaticBody2D"]
@@ -29,15 +29,15 @@ position = Vector2( 218, -110 )
 scale = Vector2( -1.11407e+12, 4.51761e+07 )
 
 [node name="GroundSpawnPosition2" type="Position2D" parent="."]
-position = Vector2( 58, -71 )
+position = Vector2( 40, -107 )
 scale = Vector2( -1.11407e+12, 4.51761e+07 )
 
 [node name="GroundSpawnPosition3" type="Position2D" parent="."]
-position = Vector2( 292, -108 )
+position = Vector2( 292, -109 )
 scale = Vector2( -1.11407e+12, 4.51761e+07 )
 
 [node name="AircraftSpawnPosition0" type="Position2D" parent="."]
-position = Vector2( 37, -110 )
+position = Vector2( 97, -224 )
 scale = Vector2( -1.11407e+12, 4.51761e+07 )
 
 [node name="TileMap2" type="TileMap" parent="."]

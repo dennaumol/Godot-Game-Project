@@ -2,9 +2,11 @@ extends Area2D
 
 var speed = 650
 var damage = 40
-var living_tick = 70
+var living_tick = 40
 
+	
 func _physics_process(delta):
+
 	position += transform.x * speed * delta
 	living_tick -= 1
 	if living_tick <= 0:

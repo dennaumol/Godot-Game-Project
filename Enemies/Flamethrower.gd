@@ -4,11 +4,10 @@ const SPEED = 30
 const PATROLLING = 'PATROLLING'
 const IDLING = 'IDLING'
 const TARGETING = 'TARGETING'
+const FLAMING = 'FLAMING'
 var _world
 
-func _ready():
-	_world = get_parent()
-	add_to_group("Enemies")
+
 
 var walk_animation_tick = 0
 var _player
@@ -31,13 +30,18 @@ var target_y
 var max_hp = 1000
 var hp = 1000
 var current_state = PATROLLING
-var current_shoting_tick = 0
-var max_shooting_tick = 80
 var looking_vector = Vector2(1, 0)
+var secondary_state
+var Explostion = preload("res://FX/Explosion.tscn")
+
+var current_flaming_tick = 0
+var max_flaming_tick = 15
+
+
 
 var AlienShotSFX0 = load("res://FX//AlienShotSFX0.tscn")
 var shot_sound
-var blood_particles = load("res://FX/AlienBloodParticle.tscn").instance()
+var blood_particles = load("res://FX/AlienBloodVFX.tscn").instance()
 
 onready var _vision_area = get_node("VisionArea")
 onready var _animation = get_node("AnimatedSprite")
@@ -45,31 +49,59 @@ onready var _left_floor_ray_cast = get_node("RayCast2DLeftFloor")
 onready var _left_walls_ray_cast = get_node("RayCast2DLeftWalls")
 onready var _right_walls_ray_cast = get_node("RayCast2DRightWalls")
 onready var _right_floor_ray_cast = get_node("RayCast2DRightFloor")
-onready var _right_platform_length_ray_cast = get_node("RayCast2DPlatformLengthRight")
-onready var _left_platform_length_ray_cast = get_node("RayCast2DPlatformLengthLeft")
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+onready var _left_muzzle = get_node("LeftMuzzle")
+onready var _right_muzzle = get_node("RightMuzzle")
+
+var new_fire = load("res://Projectiles/FlamethrowerFireNew.tscn").instance()
 var AlienProjectileGreen = load("res://Projectiles/AlienProjectileGreen.tscn")
-var projectile
+var fire
 
-
-func shoot():
+func flame():
 	if _world:
-		shot_sound = AlienShotSFX0.instance()
-		projectile = AlienProjectileGreen.instance()
-		_world.add_child(projectile)
-		_world.add_child(shot_sound)
-		projectile.rotation = looking_vector.angle_to(Vector2.RIGHT)
-		projectile.global_position = global_position
-		shot_sound.global_position = global_position
-
+		
+		
+		if not new_fire.is_casting:
+			new_fire.is_casting = true
+		
+		
+func _ready():
+	_world = get_parent()
+	add_to_group("Enemies")
+	_world.add_child(new_fire)
+	
+		
 func _physics_process(delta):
 	if _player != null:
 		if abs(_player.position.x - position.x) > 2000:
 			return
-	current_shoting_tick -= 1
+			
+	if looking_vector == Vector2(-1, 0):
+		new_fire.global_position = _left_muzzle.global_position
+			
+	else:
+		new_fire.global_position = _right_muzzle.global_position
+			
+	current_flaming_tick -= 1
+	
 	walk_animation_tick += 2
 	if walk_animation_tick >= 70:
 		walk_animation_tick = 0
+	
+	if current_state != TARGETING:
+		secondary_state = null
+	
+	if secondary_state == FLAMING:
+		if current_flaming_tick <= 0:
+			current_flaming_tick = max_flaming_tick
+			flame()
+			
+			
+
+	if secondary_state == null and new_fire.is_casting:
+		new_fire.is_casting = 0
+	
+	
 	
 	
 	_world = get_parent()
@@ -95,17 +127,16 @@ func _physics_process(delta):
 			
 	
 	if current_state == TARGETING:
-		if current_shoting_tick <= 0:
-			current_shoting_tick = max_shooting_tick
-			
-			shoot()
-		if abs(position.x - _player.position.x)  >= 20:
+		secondary_state = FLAMING
+		if abs(position.x - _player.position.x)  >= 5:
 			if _player.position.x > position.x:
 					moving_direction = 1
 					looking_vector = Vector2(1, 0)
 			else:
 				moving_direction = -1
 				looking_vector = Vector2(-1, 0)
+		
+			
 		
 		else:
 			current_state = IDLING
@@ -167,6 +198,9 @@ func _physics_process(delta):
 	else:
 		animation = "idle"
 	
+	if secondary_state == FLAMING:
+		animation += "_attacking"
+	
 	frame = walk_animation_tick / 10
 	
 	_animation.animation = animation
@@ -184,11 +218,12 @@ func take_damage(damage):
 	hp -= damage
 	if hp <= 0:
 		if _world:
-			_world.add_child(blood_particles)
-			blood_particles.global_position = global_position
-			blood_particles.emitting = true
+			var explosion = Explostion.instance()
+			_world.add_child(explosion)
+			explosion.global_position = global_position
+			new_fire.queue_free()
 		queue_free()
 		
 
 		
-		
+	

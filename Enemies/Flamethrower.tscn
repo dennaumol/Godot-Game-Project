@@ -75,43 +75,46 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 16.6563, 26.0625 )
+extents = Vector2( 9, 22 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 231, 27.875 )
+extents = Vector2( 360, 5 )
 
 [node name="Flamethrower" type="KinematicBody2D"]
+position = Vector2( 0, -29 )
 z_index = -1
+collision_layer = 16
+collision_mask = 17
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-animation = "walk_attacking"
-frame = 4
+animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 3, 0 )
+position = Vector2( -1, 8 )
 shape = SubResource( 13 )
 
 [node name="VisionArea" type="Area2D" parent="."]
 visible = false
-position = Vector2( -1, 12 )
+position = Vector2( -1, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
-visible = false
-position = Vector2( -1, -10.875 )
+position = Vector2( 2, -11 )
 shape = SubResource( 14 )
 
 [node name="RayCast2DLeftFloor" type="RayCast2D" parent="."]
-position = Vector2( -26, 0 )
+visible = false
+position = Vector2( -11, 7 )
 enabled = true
 cast_to = Vector2( 0, 30 )
 collision_mask = 9
 
 [node name="RayCast2DRightFloor" type="RayCast2D" parent="."]
-position = Vector2( 25, 0 )
+visible = false
+position = Vector2( 8, 6 )
 enabled = true
 cast_to = Vector2( 0, 30 )
 collision_mask = 9
@@ -120,8 +123,17 @@ collision_mask = 9
 visible = false
 enabled = true
 cast_to = Vector2( -232, 0 )
+collision_mask = 513
 
 [node name="RayCast2DRightWalls" type="RayCast2D" parent="."]
 visible = false
 enabled = true
 cast_to = Vector2( 230, 0 )
+
+[node name="LeftMuzzle" type="Position2D" parent="."]
+visible = false
+position = Vector2( -22, 2 )
+
+[node name="RightMuzzle" type="Position2D" parent="."]
+visible = false
+position = Vector2( 22, 2 )

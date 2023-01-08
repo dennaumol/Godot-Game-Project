@@ -1,8 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://FX/BlueShotVFX.gd" type="Script" id=1]
 
 [node name="BlueShotVFX" type="CPUParticles2D"]
-modulate = Color( 2, 2, 2, 1 )
-self_modulate = Color( 1.8, 1.8, 1.8, 1 )
+modulate = Color( 1.35, 1.35, 1.35, 1 )
 emitting = false
 amount = 30
 lifetime = 0.08
@@ -16,3 +17,4 @@ linear_accel_random = 1.0
 scale_amount = 3.0
 scale_amount_random = 1.0
 color = Color( 0.384314, 0.972549, 0.980392, 1 )
+script = ExtResource( 1 )

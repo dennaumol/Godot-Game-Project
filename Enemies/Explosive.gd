@@ -38,7 +38,7 @@ var looking_vector = Vector2(1, 0)
 
 var AlienShotSFX0 = load("res://FX//AlienShotSFX0.tscn")
 var shot_sound
-var blood_particles = load("res://FX/AlienBloodParticle.tscn").instance()
+var blood_particles = load("res://FX/AlienBloodVFX.tscn").instance()
 
 onready var _vision_area = get_node("VisionArea")
 onready var _animation = get_node("AnimatedSprite")
@@ -92,10 +92,6 @@ func _physics_process(delta):
 			current_state = PATROLLING
 	
 	if current_state == TARGETING:
-		if current_shoting_tick <= 0:
-			current_shoting_tick = max_shooting_tick
-			
-			shoot()
 		if abs(position.x - _player.position.x)  >= 20:
 			if _player.position.x > position.x:
 					moving_direction = 1
@@ -107,6 +103,9 @@ func _physics_process(delta):
 		else:
 			current_state = IDLING
 			current_idling_tick = max_idling_tick
+		if current_shoting_tick <= 0:
+			current_shoting_tick = max_shooting_tick	
+			shoot()	
 	
 				
 	if current_state == PATROLLING:

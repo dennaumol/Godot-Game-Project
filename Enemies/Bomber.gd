@@ -48,6 +48,7 @@ var max_bomb_loading_tick = 3
 var max_reloading_tick = 45
 var current_reloading_tick = 45
 var is_needed_to_update = false
+var _parent
 
 onready var _floor_ray_cast = get_node("RayCast2DFloor")
 onready var _vision_area = get_node("VisionArea")
@@ -163,7 +164,7 @@ func _physics_process(delta):
 	if secondary_state == DROPPING or current_state == RELOADING:
 		animation = "drop"
 	else:
-		animation = "idle"
+		animation = "default"
 	
 
 	frame = flying_animation_tick / 1
@@ -175,6 +176,7 @@ func _physics_process(delta):
 	
 	
 func take_damage(damage):
+	
 	hp -= damage
 	if hp <= 0:
 		if bomb:

@@ -40,7 +40,7 @@ var looking_vector = Vector2(1, 0)
 
 var AlienShotSFX0 = load("res://FX//AlienShotSFX0.tscn")
 var shot_sound
-var blood_particles = load("res://FX/AlienBloodParticle.tscn").instance()
+var blood_particles = load("res://FX/AlienBloodVFX.tscn").instance()
 
 onready var _vision_area = get_node("VisionArea")
 onready var _animation = get_node("AnimatedSprite")
@@ -92,7 +92,6 @@ func _physics_process(delta):
 	
 	if current_state == ATTACKING:
 		if is_on_floor():
-			print('jump!')
 			velocity.y = -200
 		current_state = JUMPING
 	

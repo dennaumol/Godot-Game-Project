@@ -6,7 +6,9 @@
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
-glow_high_quality = true
+glow_intensity = 0.2
+glow_blend_mode = 1
+glow_bicubic_upscale = true
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.982268, 1 )
@@ -17,8 +19,14 @@ scale = Vector2( 0.982268, 1 )
 position = Vector2( 3.82662e-05, 0.999996 )
 scale = Vector2( 1.00518, 1.02226 )
 
-[node name="Player" parent="World/YellowDesertLevel" instance=ExtResource( 2 )]
-position = Vector2( 82.0372, -130.104 )
+[node name="InterfaceLayer" type="CanvasLayer" parent="World/YellowDesertLevel"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Interface" type="Control" parent="World/YellowDesertLevel/InterfaceLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Player" parent="World/YellowDesertLevel" instance=ExtResource( 2 )]
+position = Vector2( -428.417, -60.6499 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource( 1 )
