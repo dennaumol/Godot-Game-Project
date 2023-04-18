@@ -12,12 +12,14 @@ extents = Vector2( 5, 16.25 )
 shader = ExtResource( 3 )
 shader_param/OLDCOLOR1 = Color( 0.313726, 0.815686, 0.141176, 1 )
 shader_param/OLDCOLOR2 = Color( 0, 0.517647, 0.470588, 1 )
-shader_param/OLDCOLOR3 = Color( 0.188235, 0.184314, 0.176471, 1 )
-shader_param/OLDCOLOR4 = Color( 0.14902, 0.14902, 0.145098, 1 )
-shader_param/NEWCOLOR1 = Color( 0, 0.827451, 1, 1 )
-shader_param/NEWCOLOR2 = Color( 0.0627451, 0.666667, 0.631373, 1 )
-shader_param/NEWCOLOR3 = Color( 0.0509804, 1, 0.0196078, 1 )
-shader_param/NEWCOLOR4 = Color( 0.0509804, 1, 0.0196078, 1 )
+shader_param/OLDCOLOR3 = Color( 1, 0.92549, 0.25098, 1 )
+shader_param/OLDCOLOR4 = Color( 0.666667, 0.333333, 0.333333, 1 )
+shader_param/OLDCOLOR5 = Color( 1, 0.666667, 0.333333, 1 )
+shader_param/NEWCOLOR1 = Color( 1, 0, 0, 1 )
+shader_param/NEWCOLOR2 = Color( 0.615686, 0.0392157, 0.0392157, 1 )
+shader_param/NEWCOLOR3 = Color( 0.929412, 0.627451, 0.192157, 1 )
+shader_param/NEWCOLOR4 = Color( 0.317647, 0.333333, 0.564706, 1 )
+shader_param/NEWCOLOR5 = Color( 0.152941, 0.160784, 0.27451, 1 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -1488,7 +1490,7 @@ pause_mode = 2
 material = SubResource( 245 )
 position = Vector2( 0, -2 )
 frames = SubResource( 195 )
-animation = "run_01"
+animation = "idle_00"
 __meta__ = {
 "_edit_lock_": true
 }

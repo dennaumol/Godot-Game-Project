@@ -63,6 +63,8 @@ func shoot():
 	
 func _physics_process(delta):
 	
+	
+	
 	current_shooting_tick -= 1
 	run_animation_tick += 2
 	if run_animation_tick >= 80:
@@ -70,7 +72,7 @@ func _physics_process(delta):
 	
 	
 	rad_angle = get_angle_to(get_global_mouse_position())
-	
+
 	# Horizontal movement code. First, get the player's input.
 	var walk = WALK_FORCE * (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
 	angle = rad2deg(rad_angle)
@@ -110,6 +112,10 @@ func _physics_process(delta):
 		velocity.y = -JUMP_SPEED
 		current_extra_jumps -= 1
 
+
+
+		
+
 	if flip:
 		angle = 180 - angle
 		$AnimatedSprite.flip_h = true
@@ -117,7 +123,6 @@ func _physics_process(delta):
 		if angle < 0:
 			angle = 360 + angle
 		$AnimatedSprite.flip_h = false
-	
 	
 	
 	
@@ -239,6 +244,7 @@ func _physics_process(delta):
 
 func take_damage(damage):
 	hp -= damage
-	_camera.trauma = max(_camera.trauma, 0.65)
+	_camera.trauma = max(_camera.trauma, 0.4)
+	print(hp)
 
 

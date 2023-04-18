@@ -5,6 +5,8 @@ var is_casting := false setget set_is_casting
 var max_range = 192
 var current_range = 0
 var _parent
+var damage_ray_cast_objects_collide = []
+var object
 
 onready var _beam_particles = get_node("BeamParticles")
 onready var _casting_particles = get_node("CastingParticles")
@@ -12,6 +14,9 @@ onready var _impact_particles = get_node("ImpactParticles")
 onready var _line = get_node("Line")
 onready var _tween = get_node("Tween")
 
+var FlamethrowerFireDamageArea = load("res://Projectiles/FlamethrowerFireDamageArea.tscn")
+var spawn_damage_area
+var flamethrower_fire_damage_area
 
 func _ready():
 	_casting_particles.emitting = false
@@ -20,6 +25,7 @@ func _ready():
 	_parent = get_parent()
 
 func _physics_process(delta):
+	spawn_damage_area += delta
 	
 	
 	cast_point = cast_to
@@ -39,6 +45,16 @@ func _physics_process(delta):
 	_beam_particles.global_rotation = 0
 	_casting_particles.lifetime = cast_point.length() / 192 + 0.07
 	
+	if spawn_damage_area >= 0.14:
+		flamethrower_fire_damage_area = FlamethrowerFireDamageArea.instance()
+		get_parent().add_child(flamethrower_fire_damage_area)
+		flamethrower_fire_damage_area.global_position = global_position
+		flamethrower_fire_damage_area.global_rotation = rotation
+		spawn_damage_area = 0
+	
+
+	
+
 	
 func set_is_casting(cast):
 	is_casting = cast
@@ -55,13 +71,13 @@ func set_is_casting(cast):
 
 
 func appear():
+	spawn_damage_area = 0.14
 	_tween.stop_all()
 	_tween.interpolate_property(_line, "width", 0, 10.0, 0.2)
 	_tween.start()
 	
 
 func disapper():
-	current_range = 0
 	_tween.stop_all()
 	_tween.interpolate_property(_line, "width", 10.0, 0, 0.1)
 	_tween.start()

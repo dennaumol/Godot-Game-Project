@@ -4,11 +4,13 @@ uniform vec4 OLDCOLOR1 : hint_color;
 uniform vec4 OLDCOLOR2 : hint_color;
 uniform vec4 OLDCOLOR3 : hint_color;
 uniform vec4 OLDCOLOR4 : hint_color;
+uniform vec4 OLDCOLOR5 : hint_color;
 
 uniform vec4 NEWCOLOR1 : hint_color;
 uniform vec4 NEWCOLOR2 : hint_color;
 uniform vec4 NEWCOLOR3 : hint_color;
 uniform vec4 NEWCOLOR4 : hint_color;
+uniform vec4 NEWCOLOR5 : hint_color;
 
 void fragment() {
     vec4 curr_color = texture(TEXTURE,UV); // Get current color of pixel
@@ -30,6 +32,10 @@ void fragment() {
 	else if (distance(curr_color, OLDCOLOR4) < 0.1)
 	{
         COLOR = NEWCOLOR4;
+    }
+	else if (distance(curr_color, OLDCOLOR5) < 0.1)
+	{
+        COLOR = NEWCOLOR5;
     }
 	else
 	{

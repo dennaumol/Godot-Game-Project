@@ -11,7 +11,6 @@ var DesertPart6 = load("res://Level Objects/Yellow Desert/YellowDesertPart6.tscn
 var DesertPart7 = load("res://Level Objects/Yellow Desert/YellowDesertPart7.tscn")
 var nearby_flamethrowers = []
 
-var _player_camera
 
 var is_background_set_to_player_camera = false
 
@@ -55,10 +54,7 @@ func _ready():
 			var enemy = Bomber.instance()
 			add_child(enemy)
 			enemy.global_position = spawn_position.global_position
+	_player._camera.add_child(background)
 			
 	
-func _physics_process(delta):
-	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+

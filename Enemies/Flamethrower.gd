@@ -53,13 +53,14 @@ onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var _left_muzzle = get_node("LeftMuzzle")
 onready var _right_muzzle = get_node("RightMuzzle")
 
+
+
 var new_fire = load("res://Projectiles/FlamethrowerFireNew.tscn").instance()
 var AlienProjectileGreen = load("res://Projectiles/AlienProjectileGreen.tscn")
 var fire
 
 func flame():
 	if _world:
-		
 		
 		if not new_fire.is_casting:
 			new_fire.is_casting = true
@@ -68,7 +69,7 @@ func flame():
 func _ready():
 	_world = get_parent()
 	add_to_group("Enemies")
-	_world.add_child(new_fire)
+	_world.call_deferred("add_child", new_fire)
 	
 		
 func _physics_process(delta):
@@ -81,6 +82,7 @@ func _physics_process(delta):
 			
 	else:
 		new_fire.global_position = _right_muzzle.global_position
+	new_fire.rotation = looking_vector.angle_to(Vector2.RIGHT)
 			
 	current_flaming_tick -= 1
 	
